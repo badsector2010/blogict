@@ -1,0 +1,109 @@
+:root{
+    --white:#FFFFFF;
+    --green:#5DEAD1;
+    --black:#000000;
+    --blue:#77A6F7;
+    --brown:#603912;
+    --orange:#ffccbc;
+}
+body{
+    background-color: #000;
+}
+hr{
+    border: 1px solid var(--green);
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+/* text color setup*/
+#white_text, #green_text, #brown_text{
+    font-family: 'Roboto', sans-serif; 
+    font-weight: lighter; 
+    font-size: 18px; 
+}
+#white_text{
+    color: var(--white);
+}
+#green_text{
+    color: var(--green);
+}
+#brown_text{
+    color: var(--brown);
+    font-size: 36px;
+}
+#star-id{
+    height: 20px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+/* container css*/
+.container-body{
+    margin-left: auto;
+    margin-right: auto;
+    min-width: 500px;
+    max-width: 1000px;
+}
+.container-body div{
+    width: 100%;
+}
+
+/* Menu css*/
+.menu{
+    height: 40px;
+    display: flex;
+}
+.logo{
+    flex: 4;
+}
+.menu-item{
+    flex: 6;
+    display: flex;
+}
+.menu-item-1{
+    flex: 1;
+}
+.menu-item-1 h4{
+    color: var(--white);
+}
+
+.menu-item-1 h4 a{
+    color: #FFFFFF;
+}
+
+/* header css*/
+.container-head{
+    display: flex;
+    height: 400px;
+}
+.profile-pic{
+    flex: 1;
+}
+.profile-pic img{
+    height: 300px;
+    margin-top: 80px;
+    margin-left: 40px;
+    border: 1px solid var(--green);
+    border-radius: 50%;
+}
+.profile-content{
+    flex: 1;
+    padding: 50px;
+}
+
+/*skills */
+.table-skills{
+    border: 1px solid var(--green);
+    padding: 10px;
+
+}
+table{
+    width: 100%;
+}
+table tr{
+    display: flex;
+    flex-direction: row;;
+}
+table tr td{
+    flex: 1;
+    display: flex;
+}
+
