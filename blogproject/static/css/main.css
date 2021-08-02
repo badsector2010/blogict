@@ -393,7 +393,7 @@ section {
 /*contact-section*/
 .contact-section {
   width: 100%;
-  padding: 3em auto;
+  padding: 3em 0;
   background: var(--color-white);
 }
 
@@ -408,7 +408,7 @@ section {
 
 .contact-section .contact-container {
   width: 27rem;
-  margin: 2rem auto;
+  margin: 2rem 0;
   -webkit-box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
           box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   display: -webkit-box;
@@ -421,7 +421,7 @@ section {
 }
 
 .contact-section .contact-container .contact-left {
-  width: 25rem;
+  width: 22rem;
   background: beige;
   text-align: center;
   padding: 3em 1em;
@@ -493,7 +493,7 @@ section {
 }
 
 .contact-section .contact-container .contact-right {
-  width: 25rem;
+  width: 22rem;
   padding: 3em 1em;
   text-align: left;
   display: -webkit-box;
@@ -651,7 +651,7 @@ section {
 }
 
 .profile-section .profile-container {
-  width: 27rem;
+  width: 25rem;
   margin: 2rem auto;
   -webkit-box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
           box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
@@ -665,7 +665,7 @@ section {
 }
 
 .profile-section .profile-container .profile-left {
-  width: 25rem;
+  width: 22rem;
   background: beige;
   text-align: center;
   padding: 3em 1em;
