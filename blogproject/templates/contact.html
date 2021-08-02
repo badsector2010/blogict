@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="contact-section">
+    <div class="contact-header">
+        <h2> CONTACT US </h2>
+        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr</p>
+    </div>
+    <div class="contact-container">
+        <div class="contact-left">
+            <form action="">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name">
+
+                <label for="email">Email</label>
+                <input type="email" id="email" name="name">
+
+                <label for="message">Message</label>
+                <textarea name="message" id="message" cols="30" rows="10"></textarea>
+
+                <input type="submit" class="send-message-cta" value="Send message">
+            </form>
+
+        </div>
+        <div class="contact-right">
+            <div class="contact-item">
+                <div class="left">
+                    <i class="fas fa-map-marked  fa-3x"></i>
+                </div>
+                <div class="right">
+                    <h2> Address</h2>
+                    <span>123 St. South Colorado Homes, VA, US</span>
+                </div>
+            </div>
+            <div class="contact-item">
+                <div class="left">
+                    <i class="fas fa-phone-square-alt  fa-3x"></i>
+                </div>
+                <div class="right">
+                    <h2> Phone</h2>
+                    <span>0123 456 789</span>
+                </div>
+            </div>
+            <div class="contact-item">
+                <div class="left">
+                    <i class="fas fa-paper-plane  fa-3x"></i>
+                </div>
+                <div class="right">
+                    <h2>Email</h2>
+                    <span>companyemail@email.com</span>
+                </div>
+            </div>
+            <div class="contact-item">
+                <div class="left">
+                    <i class="fas fa-globe  fa-3x"></i>
+                </div>
+                <div class="right">
+                    <h2> Website</h2>
+                    <span>www.company.com</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="contact-section">
+    <div class="contact-container">
+        <h2>Let us know your thoughts!</h2>
+        <hr><br>
+        <form action="">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name">
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="name">
+
+            <label for="message">Message</label>
+            <textarea name="message" id="message" cols="30" rows="10"></textarea>
+
+            <input type="submit" class="send-message-cta" value="Send message">
+        </form>
+        <hr>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="contact-section">
+    <div class="contact-header">
+        <h2>Sign Up and Make a Difference!</h2>
+    </div>
+    <div class="contact-container">
+        <div class="contact-left">
+
+            <form action="" method="POST">
+            {{ form.hidden_tag() }}
+            <label for="name">Full Name</label>
+            {% if form.name.errors %}
+                <input class="is-invalid" type="text" id="name" name="name">
+                <div class="invalid-feedback">
+                    {% for error in form.name.errors %}
+                        <span class="error">{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <input type="text" id="name" name="name">
+            {% endif %}
+
+            <label for="email">Email</label>
+            {% if form.email.errors %}
+                <input class="is-invalid" type="text" id="email" name="email">
+                <div class="invalid-feedback">
+                    {% for error in form.email.errors %}
+                        <span class="error">{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <input type="text" id="email" name="email">
+            {% endif %}
+
+            <label for="password">Password</label>
+            {% if form.password.errors %}
+                <input class="is-invalid" type="password" id="password" name="password">
+                <div class="invalid-feedback">
+                    {% for error in form.password.errors %}
+                        <span class="error">{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <input type="password" id="password" name="password">
+            {% endif %}
+
+
+            <label for="password">Confirm Password</label>
+            {% if form.confirm_password.errors %}
+                <input class="is-invalid" type="password" id="confirm_password" name="confirm_password">
+                <div class="invalid-feedback">
+                    {% for error in form.confirm_password.errors %}
+                        <span class="error">{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <input type="password" id="confirm_password" name="confirm_password">
+            {% endif %}
+            
+                <input type="submit" class="send-message-cta" value="Sign Up">
+        </form>
+       
+
+        </div>
+        <div class="contact-right">
+            <div class="contact-item">
+                <div class="left">
+                    <i class="fas fa-map-marked  fa-3x"></i>
+                </div>
+                <div class="right">
+                    <p>Already have an account? </p>
+                    <a class="buttontext" href="{{ url_for('login') }}">Sign In</a>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</section>
+
+{% endblock %}

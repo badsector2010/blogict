@@ -1,0 +1,138 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<section class="landing-section" style="background-image: url('/static/images/unsplash3.jpg');">
+    <div class="container">
+        <div class="left-col">
+            <p class="subhead">It's Fun &amp; Simple</p>
+            <h1>Blog ICT Learning. </h1>
+            {% if current_user.is_authenticated:  %}
+            <div class="hero-cta">
+                <a href="{{ url_for('blog') }}" class="primary-cta">See Our Blog</a><br>
+            </div>
+            <p>Learn and comment to our blogs to enhance the web developers knowledge..</p>
+            {% else %}
+            <div class="hero-cta">
+                <a href="{{ url_for('register') }}" class="primary-cta">Register Now</a><br>
+            </div>
+            <p>Create an account to see and comment on our blog contents..</p>
+            {% endif %}
+
+        </div>
+
+        <img src="{{ url_for('static', filename='images/illustration.svg')}}" class="hero-img" alt="Illustration">
+    </div>
+</section>
+
+<section class="blog-section">
+    <div class="blog-btn">
+        <a class="addblog-a" href="{{url_for('addblog')}}"><img src="{{ url_for('static', filename='images/addblog.svg')}}" alt="add blog"></a>
+    </div>
+    <div class="container">
+        <ul>
+            {% for post in posts.items %}
+            <li class="list-thumb-blog">
+                <div class="thumb-blog" style="background-image: url('/static/images/{{ post.img_url }}');">
+                    <div class="blog-title">
+                        <h2>{{ post.title }}</h2>
+                    </div>
+                    <div class="blog-author">
+                        <a href="{{ url_for('userblog', user_id = post.author.id )}}">
+                            <img src="{{ url_for('static', filename= 'images/' + post.author.img_user)}}" alt="author">
+                        </a>
+                    </div>
+                </div>
+                <div class="thumb-blog">
+                    <div class="thumb-blog-subtitle">
+                        <a style="text-decoration: none; color: beige;" href="{{ url_for('showblog', id = post.id)}}">
+                            <h6>{{post.date.strftime('%Y-%m-%d')}}</h6> 
+                            <h3>{{ post.subtitle }}</h3></a>
+                        
+                    </div>
+                    
+                </div>                                   
+            </li>
+            {% endfor %}            
+
+        </ul>
+    </div>
+    <div class="pagenation">
+        {% for page_num in posts.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+        {% if page_num %}
+            {% if posts.page == page_num %}
+                <div class="pgbtn pgcurrent"><a href="{{ url_for('main', page = page_num) }}">{{ page_num }}</a></div>
+            {% else %}
+                <div class="pgbtn"><a href="{{ url_for('main', page = page_num) }}">{{ page_num }}</a></div>
+            {% endif %}    
+        {% else %}
+            ....... 
+        {% endif %}
+        {% endfor%}
+        </div>
+</section>
+
+
+<section class="contact-section">
+    <div class="contact-header">
+        <h2> CONTACT US </h2>
+        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr</p>
+    </div>
+    <div class="contact-container">
+        <div class="contact-left">
+            <form action="">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name">
+
+                <label for="email">Email</label>
+                <input type="email" id="email" name="name">
+
+                <label for="message">Message</label>
+                <textarea name="message" id="message" cols="30" rows="10"></textarea>
+
+                <input type="submit" class="send-message-cta" value="Send message">
+            </form>
+
+        </div>
+        <div class="contact-right">
+            <div class="contact-item">
+                <div class="left">
+                    <i class="fas fa-map-marked  fa-3x"></i>
+                </div>
+                <div class="right">
+                    <h2> Address</h2>
+                    <span>123 St. South Colorado Homes, VA, US</span>
+                </div>
+            </div>
+            <div class="contact-item">
+                <div class="left">
+                    <i class="fas fa-phone-square-alt  fa-3x"></i>
+                </div>
+                <div class="right">
+                    <h2> Phone</h2>
+                    <span>0123 456 789</span>
+                </div>
+            </div>
+            <div class="contact-item">
+                <div class="left">
+                    <i class="fas fa-paper-plane  fa-3x"></i>
+                </div>
+                <div class="right">
+                    <h2>Email</h2>
+                    <span>companyemail@email.com</span>
+                </div>
+            </div>
+            <div class="contact-item">
+                <div class="left">
+                    <i class="fas fa-globe  fa-3x"></i>
+                </div>
+                <div class="right">
+                    <h2> Website</h2>
+                    <span>www.company.com</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{% endblock %}

@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block content %}
+<section class="profile-section">
+    <div class="profile-container">
+        <div class="profile-left">
+            <img src="{{ url_for('static', filename= 'images/' + current_user.img_user)}}" alt="profile rounded">
+            
+            <!-- Modal Upload Picture-->
+                <a class="btn" href="#open-modal"><i class="fas fa-edit"></i></a>
+            <!-- Modal form-->
+            <div id="open-modal" class="modal-window">
+                <div>
+                    <a href="#" title="Close" class="modal-close">Close</a>
+                    <h1>Update Image</h1>   
+                    <form action="" method="POST" enctype="multipart/form-data" style="width: 12rem;">
+                        {{ img_form.img_user }}
+                        {{ img_form.submit }}
+                    </form>               
+                </div>
+            </div>
+
+
+            <h2 class="author-name"> {{ current_user.name }} 
+                <a class="btn" href="#open-modal_user"><i class="fas fa-edit"></i></a>
+            </h2>
+            <!-- Modal form-->
+            <div id="open-modal_user" class="modal-window">
+                <div>
+                    <a href="#" title="Close" class="modal-close">Close</a>
+                    <h1>Update name or email</h1>   
+                    <form action="" method="POST" enctype="multipart/form-data">
+
+                        <label for="name">Name:</label>
+                        {{ user_form.name }}<br>
+
+                        <label for="email">Email:</label>
+                        {% if user_form.email.errors %}
+                            {{ user_form.email }}
+                            <div class="danger">
+                                {% for error in user_form.email.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ user_form.email }}
+                        {% endif %}<br>
+                        {{ user_form.submit }}
+                    </form>               
+                </div>
+            </div>
+
+            <hr>
+            <h3 class="author-title"> {{ def_job }} </h3>
+            <h4 class="author-title">Connect with social media links:</h4>
+
+            <div class="profile-social">
+                <ul class="list-unstyled">
+                    <li class="in"><a href="https://www.instagram.com"><i class="fab fa-instagram-square fa-lg"></i></a></li>
+                    <li class="fb"><a href="https://www.facebook.com"><i class="fab fa-facebook fa-lg"></i></a></li>
+                    <li class="tw"><a href="https://www.twitter.com"><i class="fab fa-twitter-square fa-lg"></i></a></li>
+                    <li class="pin"><a href="https://www.pinterest.com"><i class="fab fa-pinterest-square fa-lg"></i></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="profile-right">
+            <h1>About Me</h1>
+            
+            <form action="" method="POST" enctype="multipart/form-data">
+                <label for="job">Self Description:</label>
+                {{ form.job(cols="30", rows="5") }}
+                <!-- <textarea name="job" id="job" cols="30" rows="5"></textarea> -->
+                <br>
+                     <div class="group-inline">
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" placeholder="{{ current_user.name }}" name="name" disabled>
+                    </div>
+                    <div class="group-inline">
+                        <label for="designation">Profession:</label>
+                        {{ form.designation }}
+                    </div>
+                    <div class="group-inline">
+                        <label for="bday">Date of birth:</label>
+                        {{ form.bday }}
+                    </div>
+                    <div class="group-inline">
+                        <label for="address">Address:</label>
+                        {{ form.address }}
+                    </div>
+                    <div class="group-inline">
+                        <label for="zipcode">Zipcode:</label>
+                        {{ form.zipcode }}
+                    </div>
+                    <div class="group-inline">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" placeholder="{{ current_user.email }}" name="name" disabled>
+                    </div>
+                    <div class="group-inline">
+                        <label for="phone">Phone</label>
+                        {{ form.phone }}
+                    </div>
+                    <div class="group-inline">
+                    <input type="submit" class="send-message-cta" value="Update Profile">
+                    </div>
+                </form>
+        </div>
+    </div>
+</section>
+{% endblock %}

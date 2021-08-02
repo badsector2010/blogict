@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block content %}
+<section class="landing-section" style="background-image: url('static/images/unsplash4.jpg');">
+    <div class="addblog-container">
+        <h2>{{ legend }}</h2>
+        <span class="subheading">You're going to make a great blog post!</span>
+    </div>
+</section>
+<section class="blog-section" style="background: white; color: #000;">
+    <div class="container">
+            {{ ckeditor.load() }}
+            {{ ckeditor.config(name='body') }}
+            {{ wtf.quick_form(form, novalidate=True, button_map={"submit": "primary"}) }}
+    </div>
+</section>
+
+{% endblock %}

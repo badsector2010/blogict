@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block content %}
+
+<section class="landing-section" style="background-image: url('/static/images/{{ blog.img_url }}');">
+    <div class="addblog-container">
+        <h2><span style="background: beige; padding-left: 1.2rem; padding-right: 1.2rem;">{{blog.title}}</span></h2>
+        <span class="subheading" style="background: beige;padding-left: 1.2rem; padding-right: 1.2rem;">{{blog.subtitle}}</span>
+    </div>
+</section>
+<section class="blog-section" style="background: white; color: #000;">
+    <div class="blog-btn">
+        {% if blog.author == current_user %}
+        <a class="addblog-a" href="{{url_for('updateblog', blog_id = blog.id)}}"><img src="{{ url_for('static', filename='images/addblog.svg')}}" alt="add blog"></a>
+        {% endif %}
+    </div>
+    <div class="container">
+        <!-- {{blog.body}} -->
+        {{ blog.body|safe }}
+    </div>
+</section>
+{% if blog.author == current_user %}
+<!-- Modal Delete blog-->
+<div class="delete-btn">
+        <a class="btn" href="#delete-modal"><button>Delete Blog</button></a>
+</div>
+<!-- Modal form-->
+<div id="delete-modal" class="modal-window">
+    <div>
+        <a href="#" title="Close" class="modal-close">Close</a>
+        <h1>Delete Blog?</h1>   
+
+        <a class="go-btn" href="{{ url_for('deleteblog', blog_id = blog.id) }}"><button>Delete</button></a>
+    </div>
+</div>
+{% endif %}
+
+<!--           Comments Area -->
+<div class="comments-container">
+{{ ckeditor.load() }}
+{{ ckeditor.config(name='comment_text') }}
+{{ wtf.quick_form(form, novalidate=True, button_map={"submit": "primary"}) }}
+<br><br>
+    {% for comment in post.comments: %}
+    <ul class="commentList">
+        <li>
+            <div class="commenterImage">
+                <img src="{{ url_for('static', filename= 'images/' + comment.comment_author.img_user) }}"/>
+                
+            </div>
+            <div class="commentText">
+                {{comment.text|safe}}
+                <!-- Button for Delete Comment Modal-->
+                <span class="sub-text">{{comment.comment_author.name}}
+                <a class="comment-del" href="#comment-modal">Delete Comment</a>
+                </span>
+            </div>
+        </li>
+    </ul>
+    <!-- Model for Delete Comment -->
+    <div id="comment-modal" class="modal-window">
+        <div>
+            <a href="#" title="Close" class="modal-close">Close</a>
+            <h1>Delete Comment?</h1>
+            <a class="go-btn" href="{{ url_for('delcomment', comment_id = comment.id ) }}"><button>Delete</button></a>
+        </div>
+    </div>
+    <hr>
+    {% endfor %}
+</div>
+
+
+
+{% endblock %}

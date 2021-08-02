@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="contact-section">
+    <div class="contact-header">
+        <h2>Reset Password</h2>
+    </div>
+    <div class="contact-container">
+        <div class="contact-left">
+            <form action="" method="POST">
+                {{ form.hidden_tag() }}
+             
+                <label for="email">Email</label>
+                {% if form.email.errors %}
+                    <input class="is-invalid" type="email" id="email" name="email">
+                    <div class="invalid-feedback">
+                        {% for error in form.email.errors %}
+                            <span class="error">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <input type="text" id="email" name="email">
+                {% endif %}
+                <br><br>
+                <input type="submit" class="send-message-cta" value="Reset Password">            
+            </form>
+
+        </div>
+        <div class="contact-right">
+            <div class="contact-item">
+                <div class="left">
+                    <i class="fas fa-map-marked  fa-3x"></i>
+                </div>
+                <div class="right">
+                    <p>Don't have an account? </p>
+                    <a class="buttontext" href="{{ url_for('register') }}">Register</a>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
