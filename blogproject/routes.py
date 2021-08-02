@@ -320,22 +320,25 @@ def logout():
 def send_reset_email(msg, user):
         my_email = os.environ.get('MY_EMAIL')
         password = os.environ.get('MY_EMAIL_PASSWORD')
+        if user == "":
+          user_email = my_email
+        else:
+          user_email = user.email
         
         with smtplib.SMTP("smtp.mail.yahoo.com") as connection:
             connection.starttls()
             connection.login(user=my_email, password=password)
             connection.sendmail(
             from_addr=my_email, 
-            to_addrs=user.email, 
+            to_addrs=user_email, 
             msg=f"{msg}"
             )
 
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():
     form = SendCommetnForm()
-    my_email = os.environ.get('MY_EMAIL')
     if form.validate_on_submit():
-        user = {'email': my_email}
+        user = ""
         msg =f"Subject: {form.name.data} - {form.email.data}  \n\n {form.message.data}."
         send_reset_email(msg, user)
         flash('You successfully sent us an email, we will check and notify you soon!.')
