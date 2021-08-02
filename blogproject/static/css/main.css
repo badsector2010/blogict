@@ -109,11 +109,12 @@ li.dropdown .dropdown-content a {
 nav {
   position: fixed;
   z-index: 999;
-  width: 13rem;
-  right: 4em;
+  width: 15rem;
+  right: 0;
   top: 0;
   background: var(--color-white);
   height: 100vh;
+  padding-right: 3em;
   padding: 1em;
 }
 
