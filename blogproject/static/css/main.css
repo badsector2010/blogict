@@ -408,7 +408,7 @@ section {
 
 .contact-section .contact-container {
   width: 27rem;
-  margin: 2rem 0;
+  margin: 2rem auto;
   -webkit-box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
           box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   display: -webkit-box;
