@@ -5,7 +5,7 @@ from blogproject import app, db
 from functools import wraps
 from PIL import Image
 from blogproject.models import User, BlogPost, Comment, Profile
-from blogproject.forms import LoginForm, RegisterForm, CreatePostForm, CommentForm, UpdateProfileForm, UpdateUserImage, UpdateUserForm, RequestResetForm, ResetPasswordForm
+from blogproject.forms import LoginForm, RegisterForm, CreatePostForm, CommentForm, UpdateProfileForm, UpdateUserImage, UpdateUserForm, RequestResetForm, ResetPasswordForm, SendCommetnForm
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_bootstrap import Bootstrap
 from flask_ckeditor import CKEditor
@@ -65,8 +65,9 @@ def save_picture(fileName):
 def main():
     page = request.args.get('page', 1, type=int)
     posts = BlogPost.query.paginate(page=page, per_page=5)
+    form = SendCommetnForm()
     # posts = BlogPost.query.all()
-    return render_template('index.html',  posts = posts)
+    return render_template('index.html',  posts = posts, form = form)
 
 @app.route('/register', methods=['GET','POST'])
 def register():
