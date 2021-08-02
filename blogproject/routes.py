@@ -327,7 +327,7 @@ def send_reset_email(msg, user):
             msg=f"{msg}"
             )
 
-@app.route('/contact')
+@app.route('/contact', methods=['POST'])
 def contact():
     form = SendCommetnForm()
     my_email = os.environ.get('MY_EMAIL')
