@@ -335,7 +335,7 @@ def contact():
         user = {'email': my_email}
         msg =f"Subject: {form.name.data} - {form.email.data}  \n\n {form.message.data}."
         send_reset_email(msg, user)
-    return render_template('contact.html')
+    return render_template('contact.html', form = form)
             
 @app.route('/reset_password', methods=['GET', 'POST'])
 def reset_request():
