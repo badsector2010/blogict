@@ -293,9 +293,6 @@ def profile():
     return render_template('profile.html', title='Profile', current_user=current_user, 
                                                 profile_data = profile_data)
 
-@app.route('/contact')
-def contact():
-    return render_template('contact.html')
 
 @app.route('/blog')
 @login_required
@@ -317,12 +314,10 @@ def logout():
     logout_user()
     return redirect(url_for('main'))
 
-def send_reset_email(user):
-        token = user.get_reset_token()
+def send_reset_email(msg, user):
         my_email = os.environ.get('MY_EMAIL')
         password = os.environ.get('MY_EMAIL_PASSWORD')
-        msg =f"Subject: Password Reset Email  \n\n To reset your password, visit the following link: \n{url_for('reset_token', token=token, _external=True)} \n\nIf you did not make this request then simply ignore this email and no changes will be made."
-
+        
         with smtplib.SMTP("smtp.mail.yahoo.com") as connection:
             connection.starttls()
             connection.login(user=my_email, password=password)
@@ -332,6 +327,16 @@ def send_reset_email(user):
             msg=f"{msg}"
             )
 
+@app.route('/contact')
+def contact():
+    form = SendCommetnForm()
+    my_email = os.environ.get('MY_EMAIL')
+    if form.validate_on_submit():
+        user = {'email': my_email}
+        msg =f"Subject: {form.name.data} - {form.email.data}  \n\n {form.message.data}."
+        send_reset_email(msg, user)
+    return render_template('contact.html')
+            
 @app.route('/reset_password', methods=['GET', 'POST'])
 def reset_request():
     if current_user.is_authenticated:
@@ -342,7 +347,10 @@ def reset_request():
         if user is None:
             flash('There is no account with that email. You must register first..')
             return redirect(url_for('reset_request'))
-        send_reset_email(user)
+        #create token and message then send
+        token = user.get_reset_token()
+        msg =f"Subject: Password Reset Email  \n\n To reset your password, visit the following link: \n{url_for('reset_token', token=token, _external=True)} \n\nIf you did not make this request then simply ignore this email and no changes will be made."
+        send_reset_email(msg, user)
         flash('An email has been sent with instructions to reset you password!.')
         return redirect(url_for('login'))
     return render_template('reset_request.html', title = 'Reset Password', form = form)
