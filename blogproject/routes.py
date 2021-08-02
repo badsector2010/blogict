@@ -219,7 +219,7 @@ def updateaccount():
     profile_info = Profile.query.get(user_id)
     if form.is_submitted():
         if profile_info.user_id == current_user.id:
-
+            profile_info.designation = form.designation.data
             profile_info.bday = form.bday.data
             profile_info.address = form.address.data
             profile_info.zipcode = form.zipcode.data
