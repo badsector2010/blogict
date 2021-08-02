@@ -5,7 +5,9 @@ from blogproject import app, db
 from functools import wraps
 from PIL import Image
 from blogproject.models import User, BlogPost, Comment, Profile
-from blogproject.forms import LoginForm, RegisterForm, CreatePostForm, CommentForm, UpdateProfileForm, UpdateUserImage, UpdateUserForm, RequestResetForm, ResetPasswordForm, SendCommetnForm
+from blogproject.forms import (LoginForm, RegisterForm, CreatePostForm, CommentForm, 
+                               UpdateProfileForm, UpdateUserImage, UpdateUserForm, 
+                               RequestResetForm, ResetPasswordForm, SendCommetnForm)
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_bootstrap import Bootstrap
 from flask_ckeditor import CKEditor
@@ -328,7 +330,7 @@ def send_reset_email(msg, user):
             msg=f"{msg}"
             )
 
-@app.route('/contact', methods=['POST'])
+@app.route('/contact', methods=['GET', 'POST'])
 def contact():
     form = SendCommetnForm()
     my_email = os.environ.get('MY_EMAIL')
