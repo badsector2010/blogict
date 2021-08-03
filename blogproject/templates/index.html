@@ -5,7 +5,7 @@
     <div class="container">
         <div class="left-col">
             <p class="subhead">It's Fun &amp; Simple</p>
-            <h1>Blog ICT Learning. </h1>
+            <h1>ICT Learning Blog. </h1>
             {% if current_user.is_authenticated:  %}
             <div class="hero-cta">
                 <a href="{{ url_for('blog') }}" class="primary-cta">See Our Blog</a><br>
@@ -71,20 +71,37 @@
         </div>
 </section>
 
-
 <section class="contact-section">
     <div class="contact-header">
         <h2> CONTACT US </h2>
-        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr</p>
+        <p>Let us know your thoughts.</p>
     </div>
     <div class="contact-container">
         <div class="contact-left">
             <form action="" method="POST">
                 <label for="name">Name</label>
+                {% if form.name.errors %}
+                <input class="is-invalid" type="text" id="name" name="name">
+                <div class="invalid-feedback">
+                    {% for error in form.name.errors %}
+                        <span class="error">{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
                 <input type="text" id="name" name="name">
+            {% endif %}
 
                 <label for="email">Email</label>
-                <input type="email" id="email" name="email">
+                {% if form.email.errors %}
+                    <input class="is-invalid" type="email" id="email" name="email">
+                    <div class="invalid-feedback">
+                        {% for error in form.email.errors %}
+                            <span class="error">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <input type="text" id="email" name="email">
+                {% endif %}
 
                 <label for="message">Message</label>
                 <textarea name="message" id="message" cols="30" rows="10"></textarea>
@@ -100,7 +117,7 @@
                 </div>
                 <div class="right">
                     <h2> Address</h2>
-                    <span>123 Temporary Residence, VA, US</span>
+                    <span>123 St. South Colorado Homes, VA, US</span>
                 </div>
             </div>
             <div class="contact-item">
@@ -133,6 +150,5 @@
         </div>
     </div>
 </section>
-
 
 {% endblock %}
