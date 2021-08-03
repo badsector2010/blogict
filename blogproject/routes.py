@@ -25,7 +25,7 @@ gravatar = Gravatar(app, size=100, rating='g', default='retro', force_default=Fa
 login_manager = LoginManager()
 login_manager.init_app(app)
 
-#db.create_all()
+db.create_all()
 
 
 @login_manager.user_loader
