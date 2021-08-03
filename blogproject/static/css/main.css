@@ -13,7 +13,7 @@
   font-style: normal;
 }
 
-.danger {
+.danger, .error {
   font-weight: bold;
   color: red;
   font-style: oblique;
@@ -114,8 +114,7 @@ nav {
   top: 0;
   background: var(--color-white);
   height: 100vh;
-  padding-right: 3em;
-  padding: 1em;
+  padding: 1em 2em 1em 1em;
 }
 
 nav ul.primary-nav {
@@ -393,8 +392,9 @@ section {
 /*contact-section*/
 .contact-section {
   width: 100%;
+  margin: 0;
   padding: 3em 0;
-  background: var(--color-white);
+  text-align: center;
 }
 
 .contact-section .contact-header {
@@ -407,8 +407,10 @@ section {
 }
 
 .contact-section .contact-container {
-  width: 27rem;
-  margin: 2rem auto;
+  width: 26em;
+  margin-top: 2rem;
+  margin-left: auto;
+  margin-right: auto;
   -webkit-box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
           box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   display: -webkit-box;
@@ -651,7 +653,7 @@ section {
 }
 
 .profile-section .profile-container {
-  width: 25rem;
+  width: 27rem;
   margin: 2rem auto;
   -webkit-box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
           box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
@@ -665,7 +667,7 @@ section {
 }
 
 .profile-section .profile-container .profile-left {
-  width: 22rem;
+  width: 25rem;
   background: beige;
   text-align: center;
   padding: 3em 1em;
@@ -863,6 +865,16 @@ section {
   font-style: italic;
 }
 
+@media only screen and (min-width: 52em) {
+  .contact-section .contact-container {
+    width: 52em;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+  }
+}
+
 @media only screen and (min-width: 768px) {
   .mobile-menu, .mobile-menu-exit {
     display: none;
@@ -970,21 +982,6 @@ section {
   }
   .profile-section .profile-container {
     width: 54rem;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: row;
-            flex-direction: row;
-  }
-  .contact-section {
-    padding-left: unset;
-  }
-  .contact-section .contact-container {
-    width: 54rem;
-    margin-left: auto;
-    margin-right: auto;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
